@@ -1,0 +1,69 @@
+spring:
+  profiles:
+    active: mysql
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:h2:mem:admission_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# JWT Configurations
+app:
+  jwt:
+    secret: 9a6Zp7yT5xW3vU1sQ8rN6mK4jI2hG0fD8eC6bA4xY2vU0tS8rQ6pP4oN2mL0kJ8i
+    expiration-ms: 86400000 # 24 hours
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/student_admission_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# JWT Configurations
+app:
+  jwt:
+    secret: 9a6Zp7yT5xW3vU1sQ8rN6mK4jI2hG0fD8eC6bA4xY2vU0tS8rQ6pP4oN2mL0kJ8i
+    expiration-ms: 86400000 # 24 hours
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
